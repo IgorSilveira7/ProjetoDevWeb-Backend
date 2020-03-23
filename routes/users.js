@@ -43,13 +43,19 @@ router.post('/', function(req, res) {
   if(!(name)) {
     res.status(400).json({error:'Nome e Id são obrigatórios para o cadastramento!'});
     
+  } else {
+    
+    const newUser = {name, idController, animes:[]};
+
+    users.push(newUser);
+  
+    idController++;
+  
+    res.json(newUser);
+
   }
 
-  users.push({name, idController, animes:[]});
-
-  idController++;
-
-  res.json({name, idController, animes:[]});
+ 
 });
 
 router.put('/:id', function(req, res) {
