@@ -2,7 +2,7 @@ const users = require('../database/users');
 
 var idController = 5;
 
-class UsersControllers {
+class UsersController {
 
     index(req, res) {
         res.json(users);
@@ -24,7 +24,7 @@ class UsersControllers {
           
         } else {
           
-          const newUser = {name, idController, animes:[]};
+          const newUser = {name, id:idController, animes:[]};
       
           users.push(newUser);
         
@@ -41,8 +41,11 @@ class UsersControllers {
         const {id} = req.params;
       
         const user = users.find(user => user.id === parseInt(id));
-      
-        user.name = name;
+        
+        if(name) {
+            user.name = name;
+        }
+        
       
         res.json(user);
       
@@ -61,4 +64,4 @@ class UsersControllers {
 
 }
 
-module.exports = new UsersControllers();
+module.exports = new UsersController();
